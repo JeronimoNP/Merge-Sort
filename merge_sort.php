@@ -62,8 +62,12 @@ function merge($esquerda, $direita) {
     $indiceEsquerda = 0;
     $indiceDireita = 0;
     
+    // Armazena o tamanho dos arrays para evitar chamadas repetidas de count()
+    $tamanhoEsquerda = count($esquerda);
+    $tamanhoDireita = count($direita);
+    
     // Enquanto houver elementos em ambos os arrays
-    while ($indiceEsquerda < count($esquerda) && $indiceDireita < count($direita)) {
+    while ($indiceEsquerda < $tamanhoEsquerda && $indiceDireita < $tamanhoDireita) {
         // Compara o elemento atual de cada array
         if ($esquerda[$indiceEsquerda] <= $direita[$indiceDireita]) {
             // Se o elemento da esquerda é menor ou igual, adiciona ao resultado
@@ -77,13 +81,13 @@ function merge($esquerda, $direita) {
     }
     
     // Adiciona os elementos restantes do array esquerda (se houver)
-    while ($indiceEsquerda < count($esquerda)) {
+    while ($indiceEsquerda < $tamanhoEsquerda) {
         $resultado[] = $esquerda[$indiceEsquerda];
         $indiceEsquerda++;
     }
     
     // Adiciona os elementos restantes do array direita (se houver)
-    while ($indiceDireita < count($direita)) {
+    while ($indiceDireita < $tamanhoDireita) {
         $resultado[] = $direita[$indiceDireita];
         $indiceDireita++;
     }
